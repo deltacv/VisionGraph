@@ -1,12 +1,12 @@
-package org.deltacv.visiongraph.gui.editor
+package org.deltacv.visiongraph.editor.buttons
 
 import imgui.ImVec2
 import org.deltacv.visiongraph.VisionGraph
+import org.deltacv.visiongraph.editor.Option
 import org.deltacv.visiongraph.engine.bridge.NoOpPaperVisionEngineBridge
 import org.deltacv.visiongraph.gui.ButtonWindow
 import org.deltacv.visiongraph.gui.ToastWindow
-import org.deltacv.visiongraph.gui.editor.menu.OptionsWindow
-import org.deltacv.visiongraph.gui.editor.menu.SourceCodeLanguageWindow
+import org.deltacv.visiongraph.editor.palette.NodeList
 import org.deltacv.visiongraph.gui.style.hexColor
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.gui.font.FontAwesomeIcons

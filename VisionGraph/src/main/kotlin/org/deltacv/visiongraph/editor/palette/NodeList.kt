@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor
+package org.deltacv.visiongraph.editor.palette
 
 import imgui.ImColor
 import imgui.ImGui
@@ -42,6 +42,7 @@ import org.deltacv.visiongraph.node.*
 import org.deltacv.visiongraph.util.ElapsedTime
 import org.deltacv.visiongraph.util.flags
 import org.deltacv.visiongraph.util.loggerForThis
+import kotlin.collections.iterator
 import kotlin.reflect.KClass
 
 class NodeList(

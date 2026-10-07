@@ -48,58 +48,41 @@ tasks.register('generatePluginToml') {
     }
 }
 
-tasks.register('signPlugin') {
-    doLast {
-        // Get the key from an environment variable
-        def signingKey = System.getenv('PLUGINSIGNING_PRIVATE')
-        if (!signingKey) {
-            signingKey = findProperty('pluginSigningPrivate')
-            if(!signingKey) {
-                println("Environment variable 'PLUGINSIGNING_PRIVATE' is not set.")
-                // up to date, nothing to do
-                return
-            }
-        }
-
-        // Determine the correct JAR file to sign
-        def jarFile = tasks.named("jar").get().archiveFile.get().asFile
-
-        // Use the shadowJAR file if it's enabled and available
-        def shadowJarTask = tasks.named("shadowJar").get()
-        if (shadowJarTask && shadowJarTask.enabled) {
-            jarFile = shadowJarTask.archiveFile.get().asFile
-        }
-
-        def commonJarPath = rootDir.absolutePath + File.separator + "tools" + File.separator + "Common.jar"
-
-        println("Signing plugin. Using common jar: ${commonJarPath} and plugin jar: ${jarFile}")
-
-        def exitValue = project.exec {
-            commandLine 'java',
-                    '-classpath', commonJarPath,
-                    'io.github.deltacv.eocvsim.plugin.security.PluginSigningTool',
-                    "--plugin=${jarFile}",
-                    '--authority=deltacv',
-                    "--key=$signingKey"
-        }.assertNormalExitValue()
+configurations {
+    signingTool {
+        canBeConsumed = false
+        canBeResolved = true
     }
 }
 
-// Ensure signPlugin runs after jar or shadowJar tasks
-tasks.named("jar").configure {
-    finalizedBy signPlugin
-}
+tasks.register('signPlugin', JavaExec) {
+    def signingKey = System.getenv('PLUGINSIGNING_PRIVATE') ?: findProperty('pluginSigningPrivate')
+    if (!signingKey) {
+        enabled = false
+    }
 
-tasks.named("shadowJar").configure {
-    finalizedBy signPlugin
-}
+    def jarTask = tasks.named('jar', Jar).get()
+    def shadowJarTask = tasks.named('shadowJar').get()
 
-// Ensure signPlugin runs after the JAR tasks are complete
-tasks.named("signPlugin").configure {
-    if(tasks.named("shadowJar").get().enabled) {
-        dependsOn shadowJar
-    } else {
-        dependsOn jar
+    dependsOn jarTask
+    if (shadowJarTask.enabled) {
+        dependsOn shadowJarTask
+    }
+
+    classpath = files(configurations.signingTool)
+    mainClass = 'org.deltacv.eocvsim.plugin.security.PluginSigningTool'
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }.get())
+
+    doFirst {
+        def pluginJar = shadowJarTask.enabled ? shadowJarTask.archiveFile.get().asFile : jarTask.archiveFile.get().asFile
+        args = [
+                "--plugin=${pluginJar}",
+                '--authority=deltacv',
+                "--key=${signingKey}"
+        ]
+        println("Signing plugin. Using tool classpath: ${configurations.signingTool.asPath} and plugin jar: ${pluginJar}")
     }
 }
 
@@ -117,6 +100,8 @@ tasks.configureEach {
 shadowJar {
     configurations = [project.configurations.runtimeClasspath]
 
+    exclude "kotlin/**"
+    exclude "org/jetbrains/kotlin/**"
     exclude "META-INF/*.SF"
     exclude "META-INF/*.DSA"
     exclude "META-INF/*.RSA"
@@ -148,7 +133,7 @@ shadowJar {
 dependencies {
     implementation project(":LwjglPlatform")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
     implementation "com.google.code.gson:gson:$gson_version" // TODO: we'll get rid of it soon enough
@@ -157,7 +142,9 @@ dependencies {
 
     // compileOnly("org.deltacv.EOCV-Sim:EOCV-Sim:$eocvsim_version") { transitive = false }
     compileOnly("org.deltacv.EOCV-Sim:Common:$eocvsim_version") { transitive = false }
+    signingTool("org.deltacv.EOCV-Sim:Common:$eocvsim_version")
     compileOnly("org.deltacv.EOCV-Sim:Vision:$eocvsim_version")
+
     compileOnly "org.openpnp:opencv:4.9.0-0"
 
     // ugh, coroutines, an internal method call of EOCV-Sim in PaperVisionTabPanel returns a Job
@@ -170,9 +157,6 @@ dependencies {
     implementation 'info.picocli:picocli:4.7.6'
 
     implementation "org.deltacv:mackjpeg:$mackjpeg_version"
-
-    implementation("io.javalin:javalin:6.7.0")
-    implementation 'commons-io:commons-io:2.17.0'
 
     ksp project(":AnnotationProcessor")
 }

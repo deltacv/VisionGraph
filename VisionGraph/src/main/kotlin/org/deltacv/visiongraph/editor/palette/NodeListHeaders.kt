@@ -1,4 +1,4 @@
-package org.deltacv.visiongraph.gui.editor
+package org.deltacv.visiongraph.editor.palette
 
 import imgui.ImGui
 import imgui.flag.ImGuiCol

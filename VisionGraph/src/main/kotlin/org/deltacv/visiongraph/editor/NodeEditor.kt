@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor
+package org.deltacv.visiongraph.editor
 
 import imgui.ImGui
 import imgui.ImVec2
@@ -32,6 +32,10 @@ import org.deltacv.visiongraph.action.editor.DeleteLinksAction
 import org.deltacv.visiongraph.action.editor.DeleteNodesAction
 import org.deltacv.visiongraph.attribute.Attribute
 import org.deltacv.visiongraph.attribute.AttributeMode
+import org.deltacv.visiongraph.editor.buttons.NodeListButton
+import org.deltacv.visiongraph.editor.buttons.OptionsButtonWindow
+import org.deltacv.visiongraph.editor.buttons.PlayButtonWindow
+import org.deltacv.visiongraph.editor.buttons.SourceCodeExportButtonWindow
 import org.deltacv.visiongraph.gui.ConfirmationModalWindow
 import org.deltacv.visiongraph.gui.LayoutDirection
 import org.deltacv.visiongraph.gui.SizingMode
@@ -42,10 +46,11 @@ import org.deltacv.visiongraph.gui.display.ImageDisplayWindow
 import org.deltacv.visiongraph.gui.TooltipPopup
 import org.deltacv.visiongraph.gui.Window
 import org.deltacv.visiongraph.gui.WindowGroup
-import org.deltacv.visiongraph.gui.editor.menu.AboutModalWindow
-import org.deltacv.visiongraph.gui.editor.menu.ContextMenuPopup
-import org.deltacv.visiongraph.gui.editor.menu.EmptyStateWindow
-import org.deltacv.visiongraph.gui.editor.menu.GuidedTourWindow
+import org.deltacv.visiongraph.editor.modal.AboutModalWindow
+import org.deltacv.visiongraph.editor.menu.ContextMenuPopup
+import org.deltacv.visiongraph.editor.menu.EmptyStateWindow
+import org.deltacv.visiongraph.editor.menu.GuidedTourWindow
+import org.deltacv.visiongraph.editor.palette.NodeList
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.gui.isModalWindowOpen
 import org.deltacv.visiongraph.gui.util.openPaperVisionDocs

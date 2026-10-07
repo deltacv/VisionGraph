@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.menu
 
 import imgui.ImGui
 import imgui.flag.ImGuiCol
@@ -25,7 +25,7 @@ import org.deltacv.mai18n.tr
 import org.deltacv.visiongraph.action.editor.DeleteLinksAction
 import org.deltacv.visiongraph.action.editor.DeleteNodesAction
 import org.deltacv.visiongraph.gui.Popup
-import org.deltacv.visiongraph.gui.editor.NodeList
+import org.deltacv.visiongraph.editor.palette.NodeList
 import org.deltacv.visiongraph.id.DrawableIdElement
 import org.deltacv.visiongraph.node.Link
 import org.deltacv.visiongraph.node.Node

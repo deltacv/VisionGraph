@@ -63,6 +63,7 @@ object VisionGraphProcessRunner {
 
         currentJob = pool.submit {
             logger.info("Starting VisionGraph process...")
+            logger.info("Classpath: $classpath")
 
             val programParams = listOf("-q", "-i=${paperVisionEngine.server.port}")
 

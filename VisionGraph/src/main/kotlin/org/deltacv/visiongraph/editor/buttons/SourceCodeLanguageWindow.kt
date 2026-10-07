@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.buttons
 
 import imgui.ImGui
 import imgui.ImVec2
@@ -27,6 +27,7 @@ import org.deltacv.visiongraph.VisionGraph
 import org.deltacv.visiongraph.codegen.language.Language
 import org.deltacv.visiongraph.codegen.language.interpreted.CPythonLanguage
 import org.deltacv.visiongraph.codegen.language.jvm.JavaLanguage
+import org.deltacv.visiongraph.editor.modal.CodeDisplayWindow
 import org.deltacv.visiongraph.engine.client.message.AskProjectGenClassNameMessage
 import org.deltacv.visiongraph.engine.client.response.StringResponse
 import org.deltacv.visiongraph.gui.Window
@@ -87,7 +88,7 @@ class SourceCodeLanguageWindow(
 
             CodeDisplayWindow(
                 code, name, language,
-                when(language) {
+                when (language) {
                     is CPythonLanguage -> TextEditorLanguage.Python()
                     else -> TextEditorLanguage.Cpp()
                 },

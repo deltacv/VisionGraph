@@ -1,4 +1,4 @@
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.menu
 
 import imgui.ImGui
 import imgui.flag.ImGuiCol
@@ -6,7 +6,7 @@ import imgui.flag.ImGuiWindowFlags
 import org.deltacv.visiongraph.gui.Window
 import org.deltacv.visiongraph.gui.compose.dsl.immediateCompose
 import org.deltacv.visiongraph.gui.compose.property.type.Text
-import org.deltacv.visiongraph.gui.editor.NodeEditor
+import org.deltacv.visiongraph.editor.NodeEditor
 import org.deltacv.visiongraph.gui.style.opacity
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.util.flags

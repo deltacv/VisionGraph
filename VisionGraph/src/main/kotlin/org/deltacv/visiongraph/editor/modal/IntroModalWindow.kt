@@ -16,14 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.modal
 
 import imgui.ImGui
 import imgui.ImVec2
 import imgui.flag.ImGuiWindowFlags
 import org.deltacv.mai18n.tr
 import org.deltacv.visiongraph.gui.Window
-import org.deltacv.visiongraph.gui.editor.NodeEditor
+import org.deltacv.visiongraph.editor.NodeEditor
+import org.deltacv.visiongraph.editor.menu.GuidedTourWindow
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.gui.util.ImGuiEx
 import org.deltacv.visiongraph.io.resourceToString

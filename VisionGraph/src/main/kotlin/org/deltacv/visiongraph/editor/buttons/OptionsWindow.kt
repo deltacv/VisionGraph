@@ -16,14 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.buttons
 
 import imgui.ImGui
 import imgui.flag.ImGuiCol
 import imgui.flag.ImGuiWindowFlags
 import org.deltacv.mai18n.tr
 import org.deltacv.visiongraph.gui.Window
-import org.deltacv.visiongraph.gui.editor.Option
+import org.deltacv.visiongraph.editor.Option
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.util.flags
 import kotlin.collections.iterator
@@ -61,7 +61,7 @@ class OptionsWindow(
             }
 
             ImGui.sameLine()
-            ImGui.indent(ImGui.getItemRectSizeX() * SourceCodeLanguageWindow.Companion.SEPARATION_MULTIPLIER)
+            ImGui.indent(ImGui.getItemRectSizeX() * SourceCodeLanguageWindow.SEPARATION_MULTIPLIER)
         }
 
         ImGui.popStyleColor()

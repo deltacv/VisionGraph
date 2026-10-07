@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.modal
 
 import imgui.ImGui
 import imgui.ImVec2

@@ -1,4 +1,4 @@
-package org.deltacv.visiongraph.gui.editor.menu
+package org.deltacv.visiongraph.editor.modal
 
 import imgui.ImGui
 import imgui.ImVec2
@@ -65,7 +65,7 @@ class AboutModalWindow : Window() {
         val OS_VERSION = System.getProperty("os.version")
 
         var elementCount = 0
-        for(container in IdContext.Companion.local.all()) {
+        for(container in IdContext.local.all()) {
             elementCount += container.inmutable.size
         }
 

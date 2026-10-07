@@ -27,7 +27,7 @@ import org.deltacv.visiongraph.attribute.TypedAttribute
 import org.deltacv.visiongraph.attribute.rebuildOnLink
 import org.deltacv.visiongraph.codegen.*
 import org.deltacv.visiongraph.exception.NodeGenException
-import org.deltacv.visiongraph.gui.editor.NodeEditor
+import org.deltacv.visiongraph.editor.NodeEditor
 import org.deltacv.visiongraph.id.DrawableIdElementBase
 import org.deltacv.visiongraph.id.container.IdContext
 import org.deltacv.visiongraph.node.vision.OutputMatNode

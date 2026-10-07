@@ -25,7 +25,7 @@ import org.deltacv.visiongraph.engine.client.response.JsonElementResponse
 import org.deltacv.visiongraph.engine.client.response.OkResponse
 import org.deltacv.visiongraph.engine.client.response.PaperVisionEngineMessageResponse
 import org.deltacv.visiongraph.gui.font.FontAwesomeIcons
-import org.deltacv.visiongraph.gui.editor.Option
+import org.deltacv.visiongraph.editor.Option
 import org.deltacv.visiongraph.gui.TooltipPopup
 import org.deltacv.visiongraph.platform.lwjgl.LWJGLPaperVisionApp
 import org.deltacv.visiongraph.plugin.gui.imgui.CloseConfirmWindow

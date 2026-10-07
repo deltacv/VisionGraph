@@ -62,21 +62,13 @@ class VisionGraphPlugin : EOCVSimPlugin() {
 
     private val tunableFieldCache = WeakHashMap<VirtualField, TunableFieldApi>()
 
-    /**
-     * If the plugin comes from a file, we will just use the file classpath, since it's a single fat jar.
-     * If the plugin comes from Maven, we will use the classpath of all the transitive dependencies.
-     */
-    val fullClasspath by lazy {
-        if (pluginSource == PluginSource.FILE && context.loader is FilePluginLoader) {
-            (context.loader as FilePluginLoader).pluginFile.absolutePath
-        } else {
-            classpath.joinToString(File.pathSeparator).trim(File.pathSeparatorChar)
-        } + File.pathSeparator
-    }
-
     val visionGraphProjectManager by lazy {
         VisionGraphProjectManager(
-            fullClasspath, fileSystem, engine, this, eocvSimApi
+            classpath.joinToString(File.pathSeparator),
+            fileSystem,
+            engine,
+            this,
+            eocvSimApi
         )
     }
 

@@ -46,7 +46,7 @@ VisionGraph builds on Dear ImGui and ImNodes via Java native bindings (`imgui-ja
 ## Main Components and Class Hierarchy
 
 ### 1. The Visual Canvas: `NodeEditor`
-* **File**: `VisionGraph/src/main/kotlin/org/deltacv/visiongraph/gui/editor/NodeEditor.kt`
+* **File**: `VisionGraph/src/main/kotlin/org/deltacv/visiongraph/editor/NodeEditor.kt`
 * **Inheritance**: Subclasses `Window` (`VisionGraph/src/main/kotlin/org/deltacv/visiongraph/gui/Window.kt`).
 * **Responsibilities**:
   * Owns the primary ImNodes context handle (`editorContext`).
@@ -56,7 +56,7 @@ VisionGraph builds on Dear ImGui and ImNodes via Java native bindings (`imgui-ja
   * Intercepts connection gestures: validates socket compatibility and initiates link creation.
 
 ### 2. Node Palette: `NodeList`
-* **File**: `VisionGraph/src/main/kotlin/org/deltacv/visiongraph/gui/editor/NodeList.kt`
+* **File**: `VisionGraph/src/main/kotlin/org/deltacv/visiongraph/editor/palette/NodeList.kt`
 * **Responsibilities**:
   * Displays all discoverable nodes grouped by `NodeCategory` (`Shared/src/main/kotlin/org/deltacv/visiongraph/node/NodeCategory.kt`).
   * Implements quick search filtering with fuzzy substring matching.
@@ -104,7 +104,7 @@ NodeEditor.draw()
  │     ├── Checks ImNodes.isLinkCreated(...)
  │     │   ├── Validates sockets via Attribute.acceptLink
  │     │   ├── Validates acyclic topology via DirectedNodeGraph.hasCycleIfAdded
- │     │   └── If valid: executes CreateLinkAction(from, to).enable()
+ │     │   ├── If valid: executes CreateLinkAction(from, to).enable()
  │     │   └── If invalid: shows TooltipPopup rejection notice
  │     ├── Evaluates Keyboard Shortcuts (Ctrl+Z, Ctrl+Y, Ctrl+C, Ctrl+V, Del)
  │     └── Renders ContextMenuPopup on right-click

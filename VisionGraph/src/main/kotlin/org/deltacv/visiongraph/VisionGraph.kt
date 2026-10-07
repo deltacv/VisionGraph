@@ -36,8 +36,8 @@ import org.deltacv.visiongraph.gui.Popup
 import org.deltacv.visiongraph.gui.ToastWindow
 import org.deltacv.visiongraph.gui.Window
 import org.deltacv.visiongraph.gui.display.ImageDisplay
-import org.deltacv.visiongraph.gui.editor.NodeEditor
-import org.deltacv.visiongraph.gui.editor.menu.IntroModalWindow
+import org.deltacv.visiongraph.editor.NodeEditor
+import org.deltacv.visiongraph.editor.modal.IntroModalWindow
 import org.deltacv.visiongraph.gui.font.Font
 import org.deltacv.visiongraph.gui.font.FontAwesomeIcons
 import org.deltacv.visiongraph.gui.font.FontManager
